@@ -1,0 +1,29 @@
+.custom-navbar {
+  background-color: black;
+  // background-color: #003973;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+
+  .navbar-title {
+    > a {
+      color: white !important;
+      margin-left: 10px;
+      font-size: 18px;
+      font-weight: bolder;
+      text-decoration: none;
+    }
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+
+    a {
+      color: white;
+      margin-left: 15px;
+      text-decoration: none;
+    }
+  }
+}
