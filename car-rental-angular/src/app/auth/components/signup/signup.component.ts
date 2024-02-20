@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { AuthService } from '../services/auth/auth.service'
+import { NzMessageService } from 'ng-zorro-antd/message'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-signup',
@@ -12,7 +15,12 @@ export class SignupComponent implements OnInit {
   // ! means that the property will be initialized later in the code and will not be null or undefined when used in the code
   signupForm!: FormGroup
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private message: NzMessageService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.signupForm = this.fb.group({
@@ -34,5 +42,24 @@ export class SignupComponent implements OnInit {
 
   register(): void {
     console.log(this.signupForm.value)
+    this.authService.register(this.signupForm.value).subscribe(
+      res => {
+        console.log('res', res)
+
+        if (res.id !== null) {
+          this.message.success('User registered successfully', {
+            nzDuration: 5000
+          })
+          this.router.navigateByUrl('/login')
+        } else {
+          this.message.error('User registration failed', {
+            nzDuration: 5000
+          })
+        }
+      },
+      err => {
+        console.log(err)
+      }
+    )
   }
 }
