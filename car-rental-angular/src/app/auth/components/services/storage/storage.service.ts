@@ -48,4 +48,9 @@ export class StorageService {
 
     return this.getUserRole() === 'CUSTOMER'
   }
+
+  static logout() {
+    localStorage.removeItem(TOKEN)
+    localStorage.removeItem(USER)
+  }
 }
