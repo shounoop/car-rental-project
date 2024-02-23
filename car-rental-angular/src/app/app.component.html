@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="!isAdminLoggedIn && !isCustomerLoggedIn">
   <div class="custom-navbar">
     <div class="navbar-title">
       <a routerLink="/login">Car Rental Service</a>
@@ -8,6 +8,35 @@
       <a routerLink="/register"> Sign Up </a>
 
       <a routerLink="/login"> Login </a>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isAdminLoggedIn">
+  <div class="custom-navbar">
+    <div class="navbar-title">
+      <a routerLink="/login">LoggedIn Admin</a>
+    </div>
+
+    <div class="nav-links">
+      <a routerLink="/admin/dashboard" routerLinkActive="active"> Dashboard </a>
+      <a routerLink="/admin/car" routerLinkActive="active"> Post Car </a>
+
+      <a routerLink="#" routerLinkActive="active" (click)="logout()"> Logout </a>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isCustomerLoggedIn">
+  <div class="custom-navbar">
+    <div class="navbar-title">
+      <a routerLink="/login">LoggedIn Customer</a>
+    </div>
+
+    <div class="nav-links">
+      <a routerLink="/customer/dashboard" routerLinkActive="active"> Dashboard </a>
+
+      <a routerLink="#" routerLinkActive="active" (click)="logout()"> Logout </a>
     </div>
   </div>
 </div>
