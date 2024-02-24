@@ -1,5 +1,8 @@
 import { Component } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { AdminService } from '../../services/admin.service'
+import { NzMessageService } from 'ng-zorro-antd/message'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-post-car',
@@ -59,7 +62,12 @@ export class PostCarComponent {
   ]
   listOfTransmission = ['Manual', 'Automatic']
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private adminService: AdminService,
+    private message: NzMessageService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.postCarForm = this.fb.group({
@@ -75,10 +83,12 @@ export class PostCarComponent {
   }
 
   postCar() {
-    console.log(this.postCarForm.value)
+    this.isSpinning = true
+
+    console.log('postCarForm', this.postCarForm.value)
 
     const formData: FormData = new FormData()
-    formData.append('img', this.selectedFile as Blob)
+    formData.append('image', this.selectedFile as Blob)
     formData.append('brand', this.postCarForm.value.brand)
     formData.append('name', this.postCarForm.value.name)
     formData.append('type', this.postCarForm.value.type)
@@ -96,7 +106,20 @@ export class PostCarComponent {
     // formData.append('transmission', this.postCarForm.get('transmission')?.value)
     // formData.append('description', this.postCarForm.get('description')?.value)
     // formData.append('price', this.postCarForm.get('price')?.value)
-    console.log(formData)
+    console.log('formData', formData)
+
+    this.adminService.postCar(formData).subscribe(
+      res => {
+        this.message.success('Car posted successfully', { nzDuration: 3000 })
+        this.isSpinning = false
+        this.router.navigateByUrl('/admin/dashboard')
+        console.log(res)
+      },
+      error => {
+        this.message.error('Error posting car', { nzDuration: 3000 })
+        console.log(error)
+      }
+    )
   }
 
   onFileSelected($event: Event) {
