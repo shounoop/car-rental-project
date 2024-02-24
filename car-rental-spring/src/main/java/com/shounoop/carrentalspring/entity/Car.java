@@ -19,7 +19,7 @@ public class Car {
     private String transmission;
     private String description;
     private Long price;
-    private Date year;
+    private Integer year;
 
     @Column(columnDefinition = "longblob")
     private byte[] image;
