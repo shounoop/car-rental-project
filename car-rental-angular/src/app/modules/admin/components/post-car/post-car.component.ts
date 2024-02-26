@@ -15,51 +15,9 @@ export class PostCarComponent {
   selectedFile: File | null = null
   imagePreview: string | ArrayBuffer | null = null
   listOfOption: Array<{ label: string; value: string }> = []
-  listOfBrands = [
-    'Toyota',
-    'Honda',
-    'BMW',
-    'Mercedes',
-    'Audi',
-    'Lexus',
-    'Nissan',
-    'Ford',
-    'Chevrolet',
-    'Volkswagen'
-  ]
-  listOfType = [
-    'Sedan',
-    'SUV',
-    'Truck',
-    'Van',
-    'Coupe',
-    'Convertible',
-    'Wagon',
-    'Sports Car',
-    'Diesel',
-    'Crossover',
-    'Luxury Car',
-    'Hybrid',
-    'Electric',
-    'Hatchback',
-    'Minivan',
-    'Pickup'
-  ]
-  listOfColor = [
-    'White',
-    'Black',
-    'Silver',
-    'Gray',
-    'Red',
-    'Blue',
-    'Brown',
-    'Green',
-    'Yellow',
-    'Orange',
-    'Purple',
-    'Pink',
-    'Beige'
-  ]
+  listOfBrands = ['Toyota', 'Honda', 'BMW', 'Mercedes', 'Audi', 'Lexus']
+  listOfType = ['Sports Car', 'Diesel', 'Crossover', 'Luxury Car']
+  listOfColor = ['Red', 'Blue', 'Brown', 'Green']
   listOfTransmission = ['Manual', 'Automatic']
 
   constructor(
@@ -85,8 +43,6 @@ export class PostCarComponent {
   postCar() {
     this.isSpinning = true
 
-    console.log('postCarForm', this.postCarForm.value)
-
     const formData: FormData = new FormData()
     formData.append('image', this.selectedFile as Blob)
     formData.append('brand', this.postCarForm.value.brand)
@@ -98,14 +54,11 @@ export class PostCarComponent {
     formData.append('description', this.postCarForm.value.description)
     formData.append('price', this.postCarForm.value.price)
 
-    console.log('formData', formData)
-
     this.adminService.postCar(formData).subscribe(
       res => {
         this.message.success('Car posted successfully', { nzDuration: 3000 })
         this.isSpinning = false
         this.router.navigateByUrl('/admin/dashboard')
-        console.log(res)
       },
       error => {
         this.message.error('Error posting car', { nzDuration: 3000 })

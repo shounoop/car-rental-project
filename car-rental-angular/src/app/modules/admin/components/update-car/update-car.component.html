@@ -1,17 +1,16 @@
 <div style="margin-top: 50px; padding: 40px;">
   <nz-spin [nzSpinning]="isSpinning" [nzSize]="'large'" nzTip="Working...">
     <div class="flex flex-col items-center">
-      <h1 class="text-xl font-bold text-gray-800 mb-4 text-center">Post Car</h1>
+      <h1 class="text-xl font-bold text-gray-800 mb-4 text-center">Update Car</h1>
 
-      <form nz-form [formGroup]="postCarForm">
+      <form nz-form [formGroup]="updateForm">
         <div class="pb-6">
           <div class="profile-badge">
-            <label for="upload_profile_image" class="upload-label" *ngIf="selectedFile">
-              <img class="profile" [src]="imagePreview" alt="profile" />
-            </label>
-
-            <input type="file" nz-button nzType="primary" id="upload_profile_image" (change)="onFileSelected($event)"
-              accept="image/*" />
+            <div *ngIf="existingImage" class="image-preview">
+              <div class="circle-image">
+                <img [src]="existingImage" alt="existingImage" class="preview-image" />
+              </div>
+            </div>
           </div>
         </div>
 
@@ -88,8 +87,8 @@
           </nz-form-item>
         </div>
 
-        <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'" (click)="postCar()">
-          Post Car
+        <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'" (click)="updateForm">
+          Update
         </button>
       </form>
     </div>
