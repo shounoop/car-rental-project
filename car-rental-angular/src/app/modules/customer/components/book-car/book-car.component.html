@@ -1,29 +1,28 @@
-<div style="background-color: #f8f8f8; min-height: 91vh; padding: 24px;" *ngIf="car">
+<div style="background-color: #ccc; padding: 24px;" *ngIf="car">
   <div style="padding-top: 10px;"></div>
 
   <div style="margin-top: 10px;" class="child">
-    <div nz-row style="background-color: #ccc; padding: 24px;">
-      <div nz-col nzSpan="8">
-        <img class="profile" style="height: 130px; border-radius: 10px; object-fit: cover;" [src]="car.processedImage"
-          alt="profile">
+    <div style="background-color: #fff;  padding: 24px;">
+      <div>
+        <img class="profile w-1/2 m-auto" style="height: 230px; border-radius: 10px; object-fit: cover;"
+          [src]="car.processedImage" alt="profile">
       </div>
 
-      <div nz-col nzSpan="16">
+      <div style="padding-top: 24px;">
         <h2 style="cursor: pointer; color: #108ee9;">{{car.brand}} - {{car.name}}</h2>
 
         <p>{{car.description}}</p>
 
-        <hr>
-
         <h5>Price: <b>${{car.price}}</b> - Color : <b>{{car.color}}</b> - Transmission : <b>{{car.transmission}}</b> -
           Type : <b>{{car.type}}</b> - Year : <b>{{car.year}}</b>
         </h5>
-
-        <div style="float: right;">
-          <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary"
-            routerLink="/customer/book/{{car.id}}">Book</button>
-        </div>
       </div>
     </div>
+  </div>
+
+  <div class="flex justify-center pt-6">
+    <button style="min-width: 100px;" nzSize="small" nz-button nzType="primary" (click)="bookACar(validateForm.value)">
+      Book
+    </button>
   </div>
 </div>

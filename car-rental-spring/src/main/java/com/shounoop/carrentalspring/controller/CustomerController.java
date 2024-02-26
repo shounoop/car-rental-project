@@ -21,7 +21,7 @@ public class CustomerController {
         return ResponseEntity.ok(customerService.getAllCars());
     }
 
-    @GetMapping("/car/book")
+    @PostMapping("/car/book")
     public ResponseEntity<Void> bookACar(@RequestBody BookACarDto bookACarDto) {
         boolean isSuccessful = customerService.bookACar(bookACarDto);
 
