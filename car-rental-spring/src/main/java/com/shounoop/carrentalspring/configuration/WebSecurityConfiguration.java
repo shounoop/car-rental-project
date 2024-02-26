@@ -1,7 +1,7 @@
 package com.shounoop.carrentalspring.configuration;
 
 import com.shounoop.carrentalspring.enums.UserRole;
-import com.shounoop.carrentalspring.services.auth.jwt.UserService;
+import com.shounoop.carrentalspring.services.jwt.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

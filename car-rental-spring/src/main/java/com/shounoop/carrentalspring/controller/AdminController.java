@@ -1,7 +1,7 @@
 package com.shounoop.carrentalspring.controller;
 
 import com.shounoop.carrentalspring.dto.CarDto;
-import com.shounoop.carrentalspring.services.auth.admin.AdminService;
+import com.shounoop.carrentalspring.services.admin.AdminService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

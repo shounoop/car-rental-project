@@ -7,7 +7,7 @@ import com.shounoop.carrentalspring.dto.UserDto;
 import com.shounoop.carrentalspring.entity.User;
 import com.shounoop.carrentalspring.repository.UserRepository;
 import com.shounoop.carrentalspring.services.auth.AuthService;
-import com.shounoop.carrentalspring.services.auth.jwt.UserService;
+import com.shounoop.carrentalspring.services.jwt.UserService;
 import com.shounoop.carrentalspring.utils.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

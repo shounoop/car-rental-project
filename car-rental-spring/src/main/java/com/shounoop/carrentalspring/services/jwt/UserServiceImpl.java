@@ -1,4 +1,4 @@
-package com.shounoop.carrentalspring.services.auth.jwt;
+package com.shounoop.carrentalspring.services.jwt;
 
 import com.shounoop.carrentalspring.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
