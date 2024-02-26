@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -54,5 +55,33 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public CarDto getCarById(Long id) {
         return carRepository.findById(id).map(Car::getCarDto).orElse(null); // map() is a method that applies a given function to each element of a stream
+    }
+
+    @Override
+    public boolean updateCar(Long id, CarDto carDto) throws IOException {
+        Optional<Car> optionalCar = carRepository.findById(id);
+
+        if (optionalCar.isPresent()) {
+            Car existingCar = optionalCar.get();
+
+            if (carDto.getImage() != null) {
+                existingCar.setImage(carDto.getImage().getBytes());
+            }
+
+            existingCar.setPrice(carDto.getPrice());
+            existingCar.setYear(carDto.getYear());
+            existingCar.setType(carDto.getType());
+            existingCar.setDescription(carDto.getDescription());
+            existingCar.setTransmission(carDto.getTransmission());
+            existingCar.setColor(carDto.getColor());
+            existingCar.setName(carDto.getName());
+            existingCar.setBrand(carDto.getBrand());
+
+            carRepository.save(existingCar);
+
+            return true;
+        }
+
+        return false;
     }
 }
