@@ -1,8 +1,8 @@
-<div style="background-color: #f8f8f8; min-height: 91vh;">
+<div style="background-color: #f8f8f8; min-height: 91vh; padding: 24px;">
   <div style="padding-top: 10px;"></div>
 
   <div style="margin-top: 10px;" class="child" *ngFor="let car of cars">
-    <div nz-row>
+    <div nz-row style="background-color: #ccc; padding: 24px;">
       <div nz-col nzSpan="8">
         <img class="profile" style="height: 130px; border-radius: 10px; object-fit: cover;" [src]="car.processedImg"
           alt="profile">
@@ -16,7 +16,7 @@
         <hr>
 
         <h5>Price: <b>${{car.price}}</b> - Color : <b>{{car.color}}</b> - Transmission : <b>{{car.transmission}}</b> -
-          Type : <b>{{car.type}}</b> - Year : <b>{{car.year | date: 'yyyy'}}</b>
+          Type : <b>{{car.type}}</b> - Year : <b>{{car.year}}</b>
         </h5>
 
         <div style="float: right;">

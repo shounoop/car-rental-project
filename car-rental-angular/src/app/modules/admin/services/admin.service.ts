@@ -35,6 +35,12 @@ export class AdminService {
     })
   }
 
+  updateCar(carId: number, carDto: any): Observable<any> {
+    return this.http.put(`${BASIC_URL}/api/admin/car/${carId}`, carDto, {
+      headers: this.createAuthorizationHeader()
+    })
+  }
+
   private createAuthorizationHeader(): HttpHeaders {
     let authHeaders: HttpHeaders = new HttpHeaders()
 
