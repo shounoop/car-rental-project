@@ -50,4 +50,9 @@ public class AdminServiceImpl implements AdminService {
     public void deleteCar(Long id) {
         carRepository.deleteById(id);
     }
+
+    @Override
+    public CarDto getCarById(Long id) {
+        return carRepository.findById(id).map(Car::getCarDto).orElse(null); // map() is a method that applies a given function to each element of a stream
+    }
 }
