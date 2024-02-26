@@ -1,4 +1,4 @@
-package com.shounoop.carrentalspring.services.auth.admin;
+package com.shounoop.carrentalspring.services.admin;
 
 import com.shounoop.carrentalspring.dto.CarDto;
 
