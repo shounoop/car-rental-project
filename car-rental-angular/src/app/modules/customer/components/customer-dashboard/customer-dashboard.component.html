@@ -4,7 +4,7 @@
   <div style="margin-top: 10px;" class="child" *ngFor="let car of cars">
     <div nz-row style="background-color: #ccc; padding: 24px;">
       <div nz-col nzSpan="8">
-        <img class="profile" style="height: 130px; border-radius: 10px; object-fit: cover;" [src]="car.processedImg"
+        <img class="profile" style="height: 130px; border-radius: 10px; object-fit: cover;" [src]="car.processedImage"
           alt="profile">
       </div>
 
@@ -18,6 +18,11 @@
         <h5>Price: <b>${{car.price}}</b> - Color : <b>{{car.color}}</b> - Transmission : <b>{{car.transmission}}</b> -
           Type : <b>{{car.type}}</b> - Year : <b>{{car.year}}</b>
         </h5>
+
+        <div style="float: right;">
+          <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary"
+            routerLink="/customer/book/{{car.id}}">Book</button>
+        </div>
       </div>
     </div>
   </div>
