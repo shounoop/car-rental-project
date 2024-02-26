@@ -22,7 +22,7 @@ export class AdminDashboardComponent {
   getAllCars() {
     this.adminService.getAllCars().subscribe(res => {
       res.forEach((car: any) => {
-        car.processedImg = `data:image/jpeg;base64,${car.returnedImage}`
+        car.processedImage = `data:image/jpeg;base64,${car.returnedImage}`
         this.cars.push(car)
       })
     })

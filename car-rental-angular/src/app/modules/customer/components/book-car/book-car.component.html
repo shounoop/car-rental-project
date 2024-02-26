@@ -1,7 +1,7 @@
-<div style="background-color: #f8f8f8; min-height: 91vh; padding: 24px;">
+<div style="background-color: #f8f8f8; min-height: 91vh; padding: 24px;" *ngIf="car">
   <div style="padding-top: 10px;"></div>
 
-  <div style="margin-top: 10px;" class="child" *ngFor="let car of cars">
+  <div style="margin-top: 10px;" class="child">
     <div nz-row style="background-color: #ccc; padding: 24px;">
       <div nz-col nzSpan="8">
         <img class="profile" style="height: 130px; border-radius: 10px; object-fit: cover;" [src]="car.processedImage"
@@ -21,10 +21,7 @@
 
         <div style="float: right;">
           <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary"
-            routerLink="/admin/car/{{car.id}}">Update</button>
-
-          <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary" nzDanger
-            (click)="deleteCar(car.id)">Delete</button>
+            routerLink="/customer/book/{{car.id}}">Book</button>
         </div>
       </div>
     </div>
