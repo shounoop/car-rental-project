@@ -1,6 +1,6 @@
 package com.shounoop.carrentalspring.configuration;
 
-import com.shounoop.carrentalspring.services.auth.jwt.UserService;
+import com.shounoop.carrentalspring.services.jwt.UserService;
 import com.shounoop.carrentalspring.utils.JwtUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
