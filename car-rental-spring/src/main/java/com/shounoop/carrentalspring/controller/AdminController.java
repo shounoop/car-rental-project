@@ -2,6 +2,7 @@ package com.shounoop.carrentalspring.controller;
 
 import com.shounoop.carrentalspring.dto.BookACarDto;
 import com.shounoop.carrentalspring.dto.CarDto;
+import com.shounoop.carrentalspring.dto.SearchCarDto;
 import com.shounoop.carrentalspring.services.admin.AdminService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -73,5 +74,10 @@ public class AdminController {
         }
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+    @PostMapping("/car/search")
+    public ResponseEntity<?> searchCar(@RequestBody SearchCarDto searchCarDto) {
+        return ResponseEntity.ok(adminService.searchCar(searchCarDto));
     }
 }
