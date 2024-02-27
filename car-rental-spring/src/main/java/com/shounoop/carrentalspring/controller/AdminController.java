@@ -1,5 +1,6 @@
 package com.shounoop.carrentalspring.controller;
 
+import com.shounoop.carrentalspring.dto.BookACarDto;
 import com.shounoop.carrentalspring.dto.CarDto;
 import com.shounoop.carrentalspring.services.admin.AdminService;
 import lombok.RequiredArgsConstructor;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/admin")
@@ -55,5 +57,10 @@ public class AdminController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
+    }
+
+    @GetMapping("/car/bookings")
+    private ResponseEntity<List<BookACarDto>> getBookings() {
+        return ResponseEntity.ok(adminService.getBookings());
     }
 }

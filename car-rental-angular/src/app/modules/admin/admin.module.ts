@@ -6,10 +6,11 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { PostCarComponent } from './components/post-car/post-car.component'
 import { NgZorroImportsModule } from '../../NgZorroImportsModule'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UpdateCarComponent } from './components/update-car/update-car.component'
+import { UpdateCarComponent } from './components/update-car/update-car.component';
+import { GetBookingsComponent } from './components/get-bookings/get-bookings.component'
 
 @NgModule({
-  declarations: [AdminDashboardComponent, PostCarComponent, UpdateCarComponent],
+  declarations: [AdminDashboardComponent, PostCarComponent, UpdateCarComponent, GetBookingsComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
