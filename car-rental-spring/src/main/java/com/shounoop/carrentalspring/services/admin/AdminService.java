@@ -18,4 +18,7 @@ public interface AdminService {
     boolean updateCar(Long id, CarDto carDto) throws IOException;
 
     List<BookACarDto> getBookings();
+
+
+    boolean changeBookingStatus(Long id, String status);
 }

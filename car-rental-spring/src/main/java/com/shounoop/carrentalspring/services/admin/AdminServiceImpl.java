@@ -4,6 +4,7 @@ import com.shounoop.carrentalspring.dto.BookACarDto;
 import com.shounoop.carrentalspring.dto.CarDto;
 import com.shounoop.carrentalspring.entity.BookACar;
 import com.shounoop.carrentalspring.entity.Car;
+import com.shounoop.carrentalspring.enums.BookCarStatus;
 import com.shounoop.carrentalspring.repository.BookACarRepository;
 import com.shounoop.carrentalspring.repository.CarRepository;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -92,5 +94,26 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public List<BookACarDto> getBookings() {
         return bookACarRepository.findAll().stream().map(BookACar::getBookACarDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public boolean changeBookingStatus(Long id, String status) {
+        Optional<BookACar> optionalBookACar = bookACarRepository.findById(id);
+
+        if (optionalBookACar.isPresent()) {
+            BookACar bookACar = optionalBookACar.get();
+
+            if (Objects.equals(status, "Approve")) {
+                bookACar.setBookCarStatus(BookCarStatus.APPROVED);
+            } else {
+                bookACar.setBookCarStatus(BookCarStatus.REJECTED);
+            }
+
+            bookACarRepository.save(bookACar);
+
+            return true;
+        }
+
+        return false;
     }
 }
