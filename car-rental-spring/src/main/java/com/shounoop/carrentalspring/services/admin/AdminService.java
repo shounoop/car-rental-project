@@ -1,5 +1,6 @@
 package com.shounoop.carrentalspring.services.admin;
 
+import com.shounoop.carrentalspring.dto.BookACarDto;
 import com.shounoop.carrentalspring.dto.CarDto;
 
 import java.io.IOException;
@@ -15,4 +16,6 @@ public interface AdminService {
     CarDto getCarById(Long id);
 
     boolean updateCar(Long id, CarDto carDto) throws IOException;
+
+    List<BookACarDto> getBookings();
 }

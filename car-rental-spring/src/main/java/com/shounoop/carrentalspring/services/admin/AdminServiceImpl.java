@@ -1,7 +1,10 @@
 package com.shounoop.carrentalspring.services.admin;
 
+import com.shounoop.carrentalspring.dto.BookACarDto;
 import com.shounoop.carrentalspring.dto.CarDto;
+import com.shounoop.carrentalspring.entity.BookACar;
 import com.shounoop.carrentalspring.entity.Car;
+import com.shounoop.carrentalspring.repository.BookACarRepository;
 import com.shounoop.carrentalspring.repository.CarRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,6 +18,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class AdminServiceImpl implements AdminService {
     private final CarRepository carRepository;
+    private final BookACarRepository bookACarRepository;
 
     @Override
     public boolean postCar(CarDto carDto) throws IOException {
@@ -83,5 +87,10 @@ public class AdminServiceImpl implements AdminService {
         }
 
         return false;
+    }
+
+    @Override
+    public List<BookACarDto> getBookings() {
+        return bookACarRepository.findAll().stream().map(BookACar::getBookACarDto).collect(Collectors.toList());
     }
 }
