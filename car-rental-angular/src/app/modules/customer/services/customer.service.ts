@@ -29,6 +29,16 @@ export class CustomerService {
     })
   }
 
+  getBookingsByUserId(): Observable<any> {
+    const userId = StorageService.getUserId()
+      ? Number(StorageService.getUserId())
+      : 0
+
+    return this.http.get(`${BASIC_URL}/api/customer/car/bookings/${userId}`, {
+      headers: this.createAuthorizationHeader()
+    })
+  }
+
   private createAuthorizationHeader(): HttpHeaders {
     let authHeaders: HttpHeaders = new HttpHeaders()
 

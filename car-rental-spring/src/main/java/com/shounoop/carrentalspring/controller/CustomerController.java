@@ -40,4 +40,9 @@ public class CustomerController {
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
+
+    @GetMapping("/car/bookings/{userId}")
+    public ResponseEntity<List<BookACarDto>> getBookingsByUserId(@PathVariable Long userId) {
+        return ResponseEntity.ok(customerService.getBookingsByUserId(userId));
+    }
 }
