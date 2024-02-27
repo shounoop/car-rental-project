@@ -5,7 +5,7 @@
       <div>{{booking.id}} - {{booking.bookCarStatus}}</div>
 
       <div *ngIf="booking.bookCarStatus == 'PENDING'">
-        <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary" nzDanger
+        <button style="margin-left: 10px;" nzSize="small" nz-button nzType="primary"
           (click)="changeBookingStatus(booking.id, 'Approve')">
           Approve
         </button>
