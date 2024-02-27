@@ -1,0 +1,74 @@
+<div style="margin-top: 50px; padding: 40px;">
+  <nz-spin [nzSpinning]="isSpinning" [nzSize]="'large'" nzTip="Working...">
+    <div class="flex flex-col items-center">
+      <h1 class="text-xl font-bold text-gray-800 mb-4 text-center">Post Car</h1>
+
+      <form nz-form [formGroup]="searchCarForm">
+        <div>
+          <nz-form-item>
+            <nz-form-control nzHasFeedback [nzXs]="24" nzErrorTip="This Input Is Required">
+              <nz-select formControlName="brand" nzShowSearch nzAllowClear nzPlaceHolder="Select a Brand">
+                <nz-option *ngFor="let brand of listOfBrands" nzLabel="{{brand}}" nzValue="{{brand}}"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div>
+          <nz-form-item>
+            <nz-form-control nzHasFeedback [nzXs]="24" nzErrorTip="This Input Is Required">
+              <nz-select formControlName="type" nzShowSearch nzAllowClear nzPlaceHolder="Select a Type">
+                <nz-option *ngFor="let type of listOfType" nzLabel="{{type}}" nzValue="{{type}}"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div>
+          <nz-form-item>
+            <nz-form-control nzHasFeedback [nzXs]="24" nzErrorTip="This Input Is Required">
+              <nz-select formControlName="transmission" nzShowSearch nzAllowClear nzPlaceHolder="Select a Transmission">
+                <nz-option *ngFor="let transmission of listOfTransmission" nzLabel="{{transmission}}"
+                  nzValue="{{transmission}}"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <div>
+          <nz-form-item>
+            <nz-form-control nzHasFeedback [nzXs]="24" nzErrorTip="This Input Is Required">
+              <nz-select formControlName="color" nzShowSearch nzAllowClear nzPlaceHolder="Select a Color">
+                <nz-option *ngFor="let color of listOfColor" nzLabel="{{color}}" nzValue="{{color}}"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+
+        <button nz-button class="login-form-button login-form-margin w-full" [nzType]="'primary'" (click)="searchCar()">
+          Search
+        </button>
+      </form>
+    </div>
+  </nz-spin>
+</div>
+
+<div class="container mx-auto px-4 bg-gray-100 py-8" *ngIf="cars.length > 0">
+  <h1 class="text-xl font-bold text-gray-800 mb-4 text-center">Car List</h1>
+
+  <div class="flex flex-wrap">
+    <div class="w-1/4 p-4" *ngFor="let car of cars">
+      <div class="bg-white shadow-lg rounded-lg p-4">
+        <img [src]="car.processedImage" alt="car" class="w-full h-32 object-cover object-center">
+
+        <div class="mt-4">
+          <h2 class="text-gray-900 title-font text-lg font-medium">{{car.name}}</h2>
+          <p class="text-gray-500">{{car.brand}}</p>
+          <p class="text-gray-500">{{car.type}}</p>
+          <p class="text-gray-500">{{car.transmission}}</p>
+          <p class="text-gray-500">{{car.color}}</p>
+          <p class="text-gray-500">{{car.price}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
