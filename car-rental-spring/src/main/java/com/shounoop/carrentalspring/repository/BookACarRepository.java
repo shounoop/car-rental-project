@@ -8,4 +8,6 @@ import java.util.List;
 
 @Repository
 public interface BookACarRepository extends JpaRepository<BookACar, Long> {
+
+    List<BookACar> findAllByUserId(Long userId);
 }
