@@ -2,12 +2,16 @@ package com.shounoop.carrentalspring.services.admin;
 
 import com.shounoop.carrentalspring.dto.BookACarDto;
 import com.shounoop.carrentalspring.dto.CarDto;
+import com.shounoop.carrentalspring.dto.CarDtoListDto;
+import com.shounoop.carrentalspring.dto.SearchCarDto;
 import com.shounoop.carrentalspring.entity.BookACar;
 import com.shounoop.carrentalspring.entity.Car;
 import com.shounoop.carrentalspring.enums.BookCarStatus;
 import com.shounoop.carrentalspring.repository.BookACarRepository;
 import com.shounoop.carrentalspring.repository.CarRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -115,5 +119,25 @@ public class AdminServiceImpl implements AdminService {
         }
 
         return false;
+    }
+
+    @Override
+    public CarDtoListDto searchCar(SearchCarDto searchCarDto) {
+        Car car = new Car();
+        car.setBrand(searchCarDto.getBrand());
+        car.setType(searchCarDto.getType());
+        car.setTransmission(searchCarDto.getTransmission());
+        car.setColor(searchCarDto.getColor());
+
+        ExampleMatcher exampleMatcher = ExampleMatcher.matchingAll().withMatcher("brand", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase()).withMatcher("type", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase()).withMatcher("transmission", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase()).withMatcher("color", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase());
+
+        Example<Car> carExample = Example.of(car, exampleMatcher);
+
+        List<Car> carList = carRepository.findAll(carExample);
+
+        CarDtoListDto carDtoListDto = new CarDtoListDto();
+        carDtoListDto.setCarDtoList(carList.stream().map(Car::getCarDto).collect(Collectors.toList()));
+
+        return carDtoListDto;
     }
 }

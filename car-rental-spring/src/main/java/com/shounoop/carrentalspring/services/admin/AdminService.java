@@ -2,6 +2,8 @@ package com.shounoop.carrentalspring.services.admin;
 
 import com.shounoop.carrentalspring.dto.BookACarDto;
 import com.shounoop.carrentalspring.dto.CarDto;
+import com.shounoop.carrentalspring.dto.CarDtoListDto;
+import com.shounoop.carrentalspring.dto.SearchCarDto;
 
 import java.io.IOException;
 import java.util.List;
@@ -21,4 +23,6 @@ public interface AdminService {
 
 
     boolean changeBookingStatus(Long id, String status);
+
+    CarDtoListDto searchCar(SearchCarDto searchCarDto);
 }
